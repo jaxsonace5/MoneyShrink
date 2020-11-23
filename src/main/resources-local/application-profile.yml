@@ -1,0 +1,29 @@
+
+server:
+  port: 8001
+
+url:
+  pay: http://localhost:8001/pay/v1/
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/kakao?serverTimezone=UTC
+    username: root
+    password: qwer1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: MASTER-POOL
+      connection-test-query: SELECT 1
+      connection-init-sql: SELECT 1
+      connection-timeout: 120000
+      validation-timeout: 120000
+      maximum-pool-size: 5
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
