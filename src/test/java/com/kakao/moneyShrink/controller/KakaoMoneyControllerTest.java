@@ -10,6 +10,8 @@ import com.kakao.moneyShrink.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,6 +40,8 @@ public class KakaoMoneyControllerTest {
     @Value("${url.pay}")
     private String payUrl;
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Test
     public void shrinkMoney() {
 
@@ -61,7 +65,7 @@ public class KakaoMoneyControllerTest {
         ResponseEntity<ShrinkMoneyResponse> responseEntity
                 = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, ShrinkMoneyResponse.class);
 
-        System.out.println(responseEntity.getBody());
+        logger.info(responseEntity.getBody().toString());
 
     }
 
@@ -87,7 +91,7 @@ public class KakaoMoneyControllerTest {
         ResponseEntity<ReceiveMoneyResponse> responseEntity
                 = restTemplate.exchange(uri, HttpMethod.PUT, httpEntity, ReceiveMoneyResponse.class);
 
-        System.out.println(responseEntity.getBody());
+        logger.info(responseEntity.getBody().toString());
 
     }
 
@@ -112,7 +116,7 @@ public class KakaoMoneyControllerTest {
         ResponseEntity<SearchMoneyResponse> responseEntity
                 = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, SearchMoneyResponse.class);
 
-        System.out.println(responseEntity.getBody());
+        logger.info(responseEntity.getBody().toString());
 
     }
 
@@ -120,7 +124,7 @@ public class KakaoMoneyControllerTest {
     public void getToken() {
         String token = CommonUtils.getToken();
 
-        System.out.println(token);
+        logger.info(token);
     }
 
 }
